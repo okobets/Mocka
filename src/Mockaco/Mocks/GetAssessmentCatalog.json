@@ -1,0 +1,102 @@
+{
+  "request": {
+	  "method": "POST",
+	  "route": "TalegentGateway.asmx",
+    "condition": "<#= Request.Body["s:Envelope"]?["s:Body"]?["AssessmentCatalogRequest"] != null #>"
+  },
+  "response": {
+	  "status": "OK",
+	  "headers": {
+      "Content-Type": "application/soap+xml"
+    },
+	  "content-type": "application/soap+xml",
+      "body": "
+<?xml version=\"1.0\" encoding=\"UTF-8\" ?>
+<soap12:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\">
+  <soap12:Body>
+    <AssessmentCatalog xmlns=\"http://gateway.talegent.co.nz\">
+      <IntegrationKey xmlns=\"\"><#= Request.Body["s:Envelope"]?["s:Body"]?["AssessmentCatalogRequest"]?["IntegrationKey"]?["#text"] #></IntegrationKey>
+      <AssessmentType xmlns=\"\">
+        <Name><#= Faker.PickRandom(new[] { "apple", "banana", "orange", "strawberry", "kiwi" }) #></Name>
+        <Assessment>
+          <sid><#= Faker.Random.Guid() #></sid>
+          <name>Assessment 1</name>
+          <description>Desc</description>
+          <catalogpage>1</catalogpage>
+          <price>
+            <amount>5</amount>
+            <currency>AUD</currency>
+          </price>
+          <samplereport>
+            <name>SR1</name>
+            <link>link1</link>
+          </samplereport>
+          <samplereport>
+            <name>SR2</name>
+            <link>link2</link>
+          </samplereport>
+        </Assessment>
+        <Assessment>
+          <sid><#= Faker.Random.Guid() #></sid>
+          <name>Assessment 2</name>
+          <description>Desc</description>
+          <catalogpage>1</catalogpage>
+          <price>
+            <amount>10</amount>
+            <currency>AUD</currency>
+          </price>
+          <samplereport>
+            <name>SR1</name>
+            <link>link1</link>
+          </samplereport>
+          <samplereport>
+            <name>SR2</name>
+            <link>link2</link>
+          </samplereport>
+        </Assessment>
+      </AssessmentType>
+      <AssessmentType xmlns=\"\">
+        <Name><#= Faker.PickRandom(new[] { "apple", "banana", "orange", "strawberry", "kiwi" }) #></Name>
+        <Assessment>
+          <sid><#= Faker.Random.Guid() #></sid>
+          <name>Assessment 3</name>
+          <description>Desc</description>
+          <catalogpage>2</catalogpage>
+          <price>
+            <amount>13.2</amount>
+            <currency>USD</currency>
+          </price>
+          <samplereport>
+            <name>lalala</name>
+            <link>linka</link>
+          </samplereport>
+          <samplereport>
+            <name>lululu</name>
+            <link>linkalinka</link>
+          </samplereport>
+        </Assessment>
+        <Assessment>
+          <sid><#= Faker.Random.Guid() #></sid>
+          <name>Assessment 4</name>
+          <description>lalalalalala</description>
+          <catalogpage>2</catalogpage>
+          <price>
+            <amount>666</amount>
+            <currency>RUB</currency>
+          </price>
+          <samplereport>
+            <name>asdasda</name>
+            <link>sdfsfs</link>
+          </samplereport>
+          <samplereport>
+            <name>ghfhfghfg</name>
+            <link>sdfsdfs</link>
+          </samplereport>
+        </Assessment>
+      </AssessmentType>
+    </AssessmentCatalog>
+  </soap12:Body>
+</soap12:Envelope>
+"
+  }
+}
