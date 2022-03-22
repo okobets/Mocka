@@ -20,7 +20,7 @@ ENV DOTNET_USE_POLLING_FILE_WATCHER=true
 ENV ASPNETCORE_ENVIRONMENT=Docker
 WORKDIR /app
 COPY --from=publish /app/publish .
-COPY ./src/Mockaco/Mocks/healthcheck.json /app/Mocks/
+COPY ./src/Mockaco/Mocks /app/Mocks
 COPY ./src/Mockaco/Settings /app/Settings
 VOLUME /app/Mocks
 VOLUME /app/Settings
