@@ -82,7 +82,7 @@ namespace Microsoft.AspNetCore.Http
         {
             var routeMatcher = new RouteMatcher();
 
-            return routeMatcher.Match(mock.Route, request.Path, request.Query);
+            return routeMatcher.Match(mock.Route, request.Path);
         }
 
         public static bool HasXmlContentType(this HttpRequest request)
@@ -90,7 +90,8 @@ namespace Microsoft.AspNetCore.Http
             MediaTypeHeaderValue.TryParse(request.ContentType, out var parsedValue);
 
             return parsedValue?.MediaType.Equals(HttpContentTypes.ApplicationXml, StringComparison.OrdinalIgnoreCase) == true
-                || parsedValue?.MediaType.Equals(HttpContentTypes.TextXml, StringComparison.OrdinalIgnoreCase) == true;
+                || parsedValue?.MediaType.Equals(HttpContentTypes.TextXml, StringComparison.OrdinalIgnoreCase) == true
+                || parsedValue?.MediaType.Equals(HttpContentTypes.ApplicationSoapXml, StringComparison.OrdinalIgnoreCase) == true;
         }
 
         public static async Task<string> ReadBodyStream(this HttpRequest httpRequest)
