@@ -45,7 +45,7 @@
 
   <ItemGroup Condition="$(Configuration) != 'Debug'">
     <Content Remove="Mocks\**" />
-    <None Include="Mocks\hello.json">
+    <None Include="Mocks\healthcheck.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Resources\mockaco-icon.png">
